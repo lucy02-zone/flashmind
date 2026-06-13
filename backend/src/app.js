@@ -6,6 +6,8 @@ const morgan = require("morgan");
 const notFound = require("./middlewares/notFoundMiddleware");
 const errorHandler = require("./middlewares/errorMiddleware");
 
+const healthRoutes = require("./routes/healthRoutes");
+
 const app = express();
 
 app.use(helmet());
@@ -16,12 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(morgan("dev"));
 
-app.get("/api/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "FlashMind AI Backend Running"
-  });
-});
+app.use("/api/health", healthRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
