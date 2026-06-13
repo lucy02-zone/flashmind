@@ -4,6 +4,12 @@ const {
   "./services/textExtractionService"
 );
 
+const {
+  generateFlashcards
+} = require(
+  "./services/flashcardService"
+);
+
 (async () => {
 
   try {
@@ -13,15 +19,16 @@ const {
         "./src/uploads/sample.pdf"
       );
 
-    console.log(
-      "Length:",
-      text.length
-    );
+    const flashcards =
+      generateFlashcards(
+        text
+      );
 
     console.log(
-      text.substring(
-        0,
-        500
+      JSON.stringify(
+        flashcards,
+        null,
+        2
       )
     );
 
