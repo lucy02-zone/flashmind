@@ -1,15 +1,15 @@
 // src/controllers/authController.js
 
-const { validationResult } =
-  require("express-validator");
+const { validationResult } = require("express-validator");
 
 const {
   registerUser,
   loginUser
 } = require("../services/authService");
 
-const generateToken =
-  require("../utils/tokenGenerator");
+const User = require("../models/User");
+
+const generateToken = require("../utils/tokenGenerator");
 
 const register = async (
   req,
@@ -18,8 +18,7 @@ const register = async (
 ) => {
   try {
 
-    const errors =
-      validationResult(req);
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -34,12 +33,11 @@ const register = async (
       password
     } = req.body;
 
-    const userId =
-      await registerUser(
-        name,
-        email,
-        password
-      );
+    const userId = await registerUser(
+      name,
+      email,
+      password
+    );
 
     res.status(201).json({
       success: true,
@@ -58,8 +56,7 @@ const login = async (
 ) => {
   try {
 
-    const errors =
-      validationResult(req);
+    const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
@@ -73,14 +70,12 @@ const login = async (
       password
     } = req.body;
 
-    const user =
-      await loginUser(
-        email,
-        password
-      );
+    const user = await loginUser(
+      email,
+      password
+    );
 
-    const token =
-      generateToken(user.id);
+    const token = generateToken(user.id);
 
     res.status(200).json({
       success: true,
@@ -92,7 +87,36 @@ const login = async (
   }
 };
 
+const getProfile = async (
+  req,
+  res,
+  next
+) => {
+  try {
+
+    const user = await User.findUserById(
+      req.user.id
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found"
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      user
+    });
+
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
-  login
+  login,
+  getProfile
 };
