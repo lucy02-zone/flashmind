@@ -19,6 +19,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.use("/api/health", healthRoutes);
+const databaseRoutes =
+  require("./routes/databaseRoutes");
+
+app.use(
+  "/api/database",
+  databaseRoutes
+);
 
 app.use(notFound);
 app.use(errorHandler);
