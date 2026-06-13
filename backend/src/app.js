@@ -26,6 +26,13 @@ app.use(
   "/api/database",
   databaseRoutes
 );
+const authRoutes =
+require("./routes/authRoutes");
+
+app.use(
+  "/api/auth",
+  authRoutes
+);
 
 app.use(notFound);
 app.use(errorHandler);
