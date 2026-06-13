@@ -1,32 +1,28 @@
+import DashboardLayout
+from "../layouts/DashboardLayout";
+
 import {
   useAuth
 } from "../contexts/AuthContext";
 
 const DashboardPage = () => {
 
-  const {
-    user,
-    logout
-  } = useAuth();
+  const { user } =
+    useAuth();
 
   return (
-    <div>
+    <DashboardLayout>
 
       <h1>
-        Welcome
+        Welcome,
+        {user?.name}
       </h1>
 
       <p>
-        {user?.name}
+        FlashMind AI Dashboard
       </p>
 
-      <button
-        onClick={logout}
-      >
-        Logout
-      </button>
-
-    </div>
+    </DashboardLayout>
   );
 
 };

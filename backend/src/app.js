@@ -7,6 +7,14 @@ const notFound = require("./middlewares/notFoundMiddleware");
 const errorHandler = require("./middlewares/errorMiddleware");
 
 const healthRoutes = require("./routes/healthRoutes");
+const databaseRoutes = require("./routes/databaseRoutes");
+const authRoutes = require("./routes/authRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+
+console.log("healthRoutes =", typeof healthRoutes);
+console.log("databaseRoutes =", typeof databaseRoutes);
+console.log("authRoutes =", typeof authRoutes);
+console.log("uploadRoutes =", typeof uploadRoutes);
 
 const app = express();
 
@@ -19,20 +27,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.use("/api/health", healthRoutes);
-const databaseRoutes =
-  require("./routes/databaseRoutes");
-
-app.use(
-  "/api/database",
-  databaseRoutes
-);
-const authRoutes =
-require("./routes/authRoutes");
-
-app.use(
-  "/api/auth",
-  authRoutes
-);
+app.use("/api/database", databaseRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/uploads", uploadRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
