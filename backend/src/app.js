@@ -10,11 +10,21 @@ const healthRoutes = require("./routes/healthRoutes");
 const databaseRoutes = require("./routes/databaseRoutes");
 const authRoutes = require("./routes/authRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
+const analyticsRoutes =require("./routes/analyticsRoutes");
+const chatRoutes =
+  require(
+    "./routes/chatRoutes"
+  );
+
 
 console.log("healthRoutes =", typeof healthRoutes);
 console.log("databaseRoutes =", typeof databaseRoutes);
 console.log("authRoutes =", typeof authRoutes);
 console.log("uploadRoutes =", typeof uploadRoutes);
+console.log(
+  "chatRoutes =",
+  typeof chatRoutes
+);
 
 const app = express();
 
@@ -30,6 +40,15 @@ app.use("/api/health", healthRoutes);
 app.use("/api/database", databaseRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/uploads", uploadRoutes);
+app.use(
+  "/api/analytics",
+  analyticsRoutes
+);
+app.use(
+  "/api/chat",
+  chatRoutes
+);
+
 
 app.use(notFound);
 app.use(errorHandler);
