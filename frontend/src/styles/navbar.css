@@ -1,0 +1,21 @@
+.navbar {
+
+  background: transparent;
+
+  height: 90px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+.navbar h2 {
+
+  font-size: 32px;
+
+  font-weight: 700;
+
+  color: #0f172a;
+}

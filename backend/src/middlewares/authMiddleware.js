@@ -6,6 +6,11 @@ const protect = async (
   next
 ) => {
 
+  console.log(
+    "AUTH HEADER:",
+    req.headers.authorization
+  );
+
   try {
 
     let token;
@@ -44,6 +49,8 @@ const protect = async (
     }
 
   } catch (error) {
+
+    console.log(error);
 
     return res.status(401).json({
       success: false,

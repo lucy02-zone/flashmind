@@ -1,28 +1,102 @@
-import DashboardLayout
-from "../layouts/DashboardLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 import {
-  useAuth
-} from "../contexts/AuthContext";
+  FaFileAlt,
+  FaLayerGroup,
+  FaQuestionCircle,
+  FaBook
+} from "react-icons/fa";
+
+import "../styles/dashboard.css";
 
 const DashboardPage = () => {
 
-  const { user } =
-    useAuth();
+  const cards = [
+    {
+      title: "Files",
+      description:
+        "Manage uploaded notes and study materials.",
+      icon: <FaFileAlt />
+    },
+    {
+      title: "Flashcards",
+      description:
+        "Practice using AI generated flashcards.",
+      icon: <FaLayerGroup />
+    },
+    {
+      title: "Quizzes",
+      description:
+        "Test your knowledge with quizzes.",
+      icon: <FaQuestionCircle />
+    },
+    {
+      title: "Summaries",
+      description:
+        "Quickly revise using concise summaries.",
+      icon: <FaBook />
+    }
+  ];
 
   return (
+
     <DashboardLayout>
 
-      <h1>
-        Welcome,
-        {user?.name}
-      </h1>
+      <div className="dashboard-container">
 
-      <p>
-        FlashMind AI Dashboard
-      </p>
+        <section className="hero">
+
+          <h1>
+            Learn • Revise • Master
+          </h1>
+
+          <p>
+            Interactive AI learning platform
+            for notes, flashcards, quizzes,
+            summaries and revision plans.
+          </p>
+
+          <button className="hero-btn">
+            Start Learning
+          </button>
+
+        </section>
+
+        <section className="feature-grid">
+
+          {
+            cards.map(
+              (card, index) => (
+
+                <div
+                  key={index}
+                  className="feature-card"
+                >
+
+                  <div className="feature-icon">
+                    {card.icon}
+                  </div>
+
+                  <h3>
+                    {card.title}
+                  </h3>
+
+                  <p>
+                    {card.description}
+                  </p>
+
+                </div>
+
+              )
+            )
+          }
+
+        </section>
+
+      </div>
 
     </DashboardLayout>
+
   );
 
 };

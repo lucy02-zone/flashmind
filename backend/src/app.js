@@ -17,14 +17,8 @@ const chatRoutes =
   );
 
 
-console.log("healthRoutes =", typeof healthRoutes);
-console.log("databaseRoutes =", typeof databaseRoutes);
-console.log("authRoutes =", typeof authRoutes);
-console.log("uploadRoutes =", typeof uploadRoutes);
-console.log(
-  "chatRoutes =",
-  typeof chatRoutes
-);
+
+
 
 const app = express();
 

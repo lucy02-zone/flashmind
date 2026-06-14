@@ -1,0 +1,49 @@
+.upload-card {
+
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 50px;
+
+  border: 1px solid #edf2f7;
+}
+
+.upload-icon {
+
+  width: 90px;
+
+  height: 90px;
+
+  border-radius: 20px;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+}
+
+.file-label {
+
+  background: #0f172a;
+
+  color: white;
+
+  padding: 15px 25px;
+
+  border-radius: 14px;
+}
+
+.upload-btn {
+
+  background: #0f172a;
+
+  color: white;
+
+  border: none;
+
+  padding: 15px 30px;
+
+  border-radius: 14px;
+
+  font-size: 16px;
+}
