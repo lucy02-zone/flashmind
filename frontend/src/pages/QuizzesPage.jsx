@@ -1,23 +1,11 @@
-import {
-  useEffect,
-  useState
-} from "react";
+import { useEffect, useState } from "react";
 
-import {
-  getQuizzes
-} from "../services/quizService";
+import { getQuizzes } from "../services/quizService";
+import "../styles/quizzes.css";
 
 const QuizzesPage = () => {
-
-  const [
-    quizzes,
-    setQuizzes
-  ] = useState([]);
-
-  const [
-    loading,
-    setLoading
-  ] = useState(true);
+  const [quizzes, setQuizzes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
@@ -59,84 +47,44 @@ const QuizzesPage = () => {
 
   if (loading) {
     return (
-      <h2>
-        Loading quizzes...
-      </h2>
+      <div className="quizzes-page">
+        <h2>Loading quizzes...</h2>
+      </div>
     );
   }
 
   return (
-    <div>
+    <div className="quizzes-page">
+      <div className="quizzes-header">
+        <div>
+          <h1>Quizzes</h1>
+          <p>Explore your generated quiz questions and review answers to help reinforce your learning.</p>
+        </div>
+        <span className="quizzes-count">{quizzes.length} quizzes</span>
+      </div>
 
-      <h1>
-        Quizzes
-      </h1>
+      {quizzes.length === 0 ? (
+        <div className="empty-state">
+          <strong>No quizzes found</strong>
+          Upload or generate notes to create quizzes automatically.
+        </div>
+      ) : (
+        <div className="quizzes-grid">
+          {quizzes.map((quiz) => (
+            <div key={quiz.id} className="quiz-card">
+              <h2 className="quiz-question">{quiz.question}</h2>
+              <p className="quiz-answer">
+                <strong>Answer:</strong> {quiz.correct_answer}
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
 
-      <p>
-        Total Quizzes:
-        {" "}
-        {quizzes.length}
-      </p>
-
-      {
-        quizzes.length === 0 ? (
-          <p>
-            No quizzes found.
-          </p>
-        ) : (
-          quizzes.map(
-            (quiz) => (
-              <div
-                key={quiz.id}
-                style={{
-                  border:
-                    "1px solid #ccc",
-                  padding:
-                    "15px",
-                  marginBottom:
-                    "15px",
-                  borderRadius:
-                    "8px"
-                }}
-              >
-                <h3>
-                  {
-                    quiz.question
-                  }
-                </h3>
-
-                <p>
-                  <strong>
-                    Answer:
-                  </strong>
-                  {" "}
-                  {
-                    quiz.correct_answer
-                  }
-                </p>
-
-              </div>
-            )
-          )
-        )
-      }
-
-      <hr />
-
-      <h3>
-        Debug Data
-      </h3>
-
-      <pre>
-        {
-          JSON.stringify(
-            quizzes,
-            null,
-            2
-          )
-        }
-      </pre>
-
+      <div className="debug-output">
+        <h3>Debug Data</h3>
+        <pre>{JSON.stringify(quizzes, null, 2)}</pre>
+      </div>
     </div>
   );
 };

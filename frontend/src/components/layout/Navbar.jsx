@@ -1,3 +1,9 @@
+import {
+  FaBell,
+  FaSearch,
+  FaUserCircle
+} from "react-icons/fa";
+
 import "../../styles/navbar.css";
 
 const Navbar = () => {
@@ -6,9 +12,23 @@ const Navbar = () => {
 
     <div className="navbar">
 
-      <h2>
-        Welcome Back 👋
-      </h2>
+      <div className="search-box">
+
+        <FaSearch />
+
+        <input
+          placeholder="Search notes..."
+        />
+
+      </div>
+
+      <div className="navbar-right">
+
+        <FaBell />
+
+        <FaUserCircle />
+
+      </div>
 
     </div>
 

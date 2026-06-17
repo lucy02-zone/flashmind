@@ -1,4 +1,5 @@
 import DashboardLayout from "../layouts/DashboardLayout";
+import { useNavigate } from "react-router-dom";
 
 import {
   FaFileAlt,
@@ -10,6 +11,8 @@ import {
 import "../styles/dashboard.css";
 
 const DashboardPage = () => {
+
+  const navigate = useNavigate();
 
   const cards = [
     {
@@ -56,11 +59,44 @@ const DashboardPage = () => {
             summaries and revision plans.
           </p>
 
-          <button className="hero-btn">
+          <button
+            className="hero-btn"
+            onClick={() =>
+              navigate("/flashcards")
+            }
+          >
             Start Learning
           </button>
 
         </section>
+
+        <div className="quick-actions">
+
+          <button
+            onClick={() =>
+              navigate("/uploads")
+            }
+          >
+            Upload Notes
+          </button>
+
+          <button
+            onClick={() =>
+              navigate("/quizzes")
+            }
+          >
+            Generate Quiz
+          </button>
+
+          <button
+            onClick={() =>
+              navigate("/flashcards")
+            }
+          >
+            Flashcards
+          </button>
+
+        </div>
 
         <section className="feature-grid">
 

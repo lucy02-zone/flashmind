@@ -34,6 +34,22 @@ const createFile = async (
   return result.insertId;
 };
 
+const getLatestFileForUser = async (userId) => {
+  const [rows] = await pool.execute(
+    `
+      SELECT *
+      FROM files
+      WHERE user_id = ?
+      ORDER BY created_at DESC
+      LIMIT 1
+    `,
+    [userId]
+  );
+
+  return rows[0] || null;
+};
+
 module.exports = {
-  createFile
+  createFile,
+  getLatestFileForUser
 };

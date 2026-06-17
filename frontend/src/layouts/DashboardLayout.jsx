@@ -1,8 +1,5 @@
-import Sidebar from
-  "../components/layout/Sidebar";
-
-import Navbar from
-  "../components/layout/Navbar";
+import Sidebar from "../components/layout/Sidebar";
+import Navbar from "../components/layout/Navbar";
 
 const DashboardLayout = ({
   children
@@ -14,10 +11,12 @@ const DashboardLayout = ({
 
       <Sidebar />
 
-      <div
+      <main
         style={{
-          marginLeft: "280px",
-          padding: "20px"
+          marginLeft: "260px",
+          minHeight: "100vh",
+          padding: "30px",
+          background: "#f5f7fb"
         }}
       >
 
@@ -25,7 +24,7 @@ const DashboardLayout = ({
 
         {children}
 
-      </div>
+      </main>
 
     </div>
 

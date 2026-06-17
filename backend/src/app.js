@@ -10,11 +10,10 @@ const healthRoutes = require("./routes/healthRoutes");
 const databaseRoutes = require("./routes/databaseRoutes");
 const authRoutes = require("./routes/authRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
-const analyticsRoutes =require("./routes/analyticsRoutes");
-const chatRoutes =
-  require(
-    "./routes/chatRoutes"
-  );
+const summaryRoutes = require("./routes/summaryRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
+const quizRoutes = require("./routes/quizRoutes");
+const chatRoutes = require("./routes/chatRoutes");
 
 
 
@@ -34,6 +33,8 @@ app.use("/api/health", healthRoutes);
 app.use("/api/database", databaseRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/uploads", uploadRoutes);
+app.use("/api/summaries", summaryRoutes);
+app.use("/api/quizzes", quizRoutes);
 app.use(
   "/api/analytics",
   analyticsRoutes

@@ -16,12 +16,19 @@ const generateRevisionPlan = (
 
   const plan = [];
 
-  const topics =
-    sentences.slice(
-      0,
-      10
-    );
+const estimatedDays =
+  Math.max(
+    5,
+    Math.ceil(
+      text.length / 1000
+    )
+  );
 
+const topics =
+  sentences.slice(
+    0,
+    estimatedDays
+  );
   topics.forEach(
     (
       topic,
