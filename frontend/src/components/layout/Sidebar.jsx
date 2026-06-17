@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa";
 
 import {
-  Link
+  NavLink
 } from "react-router-dom";
 
 import "../../styles/sidebar.css";
@@ -25,40 +25,40 @@ const Sidebar = () => {
 
       <nav>
 
-        <Link to="/">
+        <NavLink to="/" end>
           <FaHome />
           Dashboard
-        </Link>
+        </NavLink>
 
-        <Link to="/uploads">
+        <NavLink to="/uploads">
           <FaUpload />
           Uploads
-        </Link>
+        </NavLink>
 
-        <Link to="/flashcards">
+        <NavLink to="/flashcards">
           <FaLayerGroup />
           Flashcards
-        </Link>
+        </NavLink>
 
-        <Link to="/quizzes">
+        <NavLink to="/quizzes">
           <FaQuestionCircle />
           Quizzes
-        </Link>
+        </NavLink>
 
-        <Link to="/summaries">
+        <NavLink to="/summaries">
           <FaFileAlt />
           Summaries
-        </Link>
+        </NavLink>
 
-        <Link to="/analytics">
+        <NavLink to="/analytics">
           <FaChartBar />
           Analytics
-        </Link>
+        </NavLink>
 
-        <Link to="/chat">
+        <NavLink to="/chat">
           <FaComments />
           Chat
-        </Link>
+        </NavLink>
 
       </nav>
 
