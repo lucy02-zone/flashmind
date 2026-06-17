@@ -11,6 +11,8 @@ import {
   registerUser
 } from "../services/authService";
 
+import "../styles/auth.css";
+
 const RegisterPage = () => {
 
   const navigate =
@@ -64,76 +66,48 @@ const RegisterPage = () => {
     };
 
   return (
-    <div>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>Create account</h1>
+        <p>Register now to start building summaries, flashcards, quizzes, and revision plans.</p>
 
-      <h1>Register</h1>
+        {error && <div className="auth-error">{error}</div>}
 
-      {error && (
-        <p>{error}</p>
-      )}
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={formData.name}
+            onChange={handleChange}
+          />
 
-      <form
-        onSubmit={
-          handleSubmit
-        }
-      >
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={
-            formData.name
-          }
-          onChange={
-            handleChange
-          }
-        />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={
-            formData.email
-          }
-          onChange={
-            handleChange
-          }
-        />
+          <button type="submit">Register</button>
+        </form>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={
-            formData.password
-          }
-          onChange={
-            handleChange
-          }
-        />
-
-        <button
-          type="submit"
-        >
-          Register
-        </button>
-
-      </form>
-
-      <p>
-
-        Already have account?
-
-        <Link
-          to="/login"
-        >
-          Login
-        </Link>
-
-      </p>
-
+        <div className="auth-link-row">
+          <span>Already have an account?</span>
+          <Link className="auth-link" to="/login">
+            Sign in
+          </Link>
+        </div>
+      </div>
     </div>
   );
 

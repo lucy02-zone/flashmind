@@ -1,7 +1,8 @@
 import {
   FaBell,
   FaSearch,
-  FaUserCircle
+  FaUserCircle,
+  FaSignOutAlt
 } from "react-icons/fa";
 
 import "../../styles/navbar.css";
@@ -9,7 +10,7 @@ import "../../styles/navbar.css";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Navbar = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <div className="navbar">
@@ -24,6 +25,14 @@ const Navbar = () => {
           <span>{user?.name || "Guest"}</span>
           <FaUserCircle />
         </div>
+        <button
+          className="logout-btn"
+          onClick={logout}
+          type="button"
+        >
+          <FaSignOutAlt />
+          Logout
+        </button>
       </div>
     </div>
   );

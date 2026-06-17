@@ -16,6 +16,8 @@ import {
   useAuth
 } from "../contexts/AuthContext";
 
+import "../styles/auth.css";
+
 const LoginPage = () => {
 
   const navigate =
@@ -83,64 +85,40 @@ const LoginPage = () => {
     };
 
   return (
-    <div>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>Welcome back</h1>
+        <p>Sign in to continue to your Flashmind dashboard.</p>
 
-      <h1>Login</h1>
+        {error && <div className="auth-error">{error}</div>}
 
-      {error && (
-        <p>{error}</p>
-      )}
+        <form className="auth-form" onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+          />
 
-      <form
-        onSubmit={
-          handleSubmit
-        }
-      >
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={
-            formData.email
-          }
-          onChange={
-            handleChange
-          }
-        />
+          <button type="submit">Login</button>
+        </form>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={
-            formData.password
-          }
-          onChange={
-            handleChange
-          }
-        />
-
-        <button
-          type="submit"
-        >
-          Login
-        </button>
-
-      </form>
-
-      <p>
-
-        No account?
-
-        <Link
-          to="/register"
-        >
-          Register
-        </Link>
-
-      </p>
-
+        <div className="auth-link-row">
+          <span>Don’t have an account?</span>
+          <Link className="auth-link" to="/register">
+            Create one
+          </Link>
+        </div>
+      </div>
     </div>
   );
 
