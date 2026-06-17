@@ -13,6 +13,7 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const summaryRoutes = require("./routes/summaryRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const quizRoutes = require("./routes/quizRoutes");
+const flashcardRoutes = require("./routes/flashcardRoutes");
 const chatRoutes = require("./routes/chatRoutes");
 
 
@@ -33,6 +34,7 @@ app.use("/api/health", healthRoutes);
 app.use("/api/database", databaseRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/uploads", uploadRoutes);
+app.use("/api/flashcards", flashcardRoutes);
 app.use("/api/summaries", summaryRoutes);
 app.use("/api/quizzes", quizRoutes);
 app.use(

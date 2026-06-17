@@ -25,3 +25,14 @@ export const uploadFile =
 
     return response.data;
   };
+
+export const getUserFiles =
+  async () => {
+
+    const response =
+      await api.get(
+        "/uploads"
+      );
+
+    return response.data;
+  };

@@ -4,10 +4,17 @@ const upload = require("../config/multer");
 const protect = require("../middlewares/authMiddleware");
 
 const {
-  uploadFile
+  uploadFile,
+  getUserFiles
 } = require("../controllers/uploadController");
 
 const router = express.Router();
+
+router.get(
+  "/",
+  protect,
+  getUserFiles
+);
 
 router.post(
   "/",

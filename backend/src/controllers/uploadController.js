@@ -1,6 +1,9 @@
 const {
   saveFileMetadata
 } = require("../services/uploadService");
+const {
+  getFilesForUser
+} = require("../services/summaryDataService");
 
 const uploadFile = async (
   req,
@@ -36,6 +39,20 @@ const uploadFile = async (
   }
 };
 
+const getUserFiles = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const files = await getFilesForUser(req.user.id);
+    res.json({ success: true, files });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
-  uploadFile
+  uploadFile,
+  getUserFiles
 };

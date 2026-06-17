@@ -1,11 +1,13 @@
 import api from "./api";
 
 export const getFlashcards =
-  async () => {
-
+  async (fileId) => {
     const response =
       await api.get(
-        "/flashcards"
+        "/flashcards",
+        {
+          params: { fileId }
+        }
       );
 
     return response.data;
