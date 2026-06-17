@@ -1,6 +1,6 @@
 .sidebar {
 
-  width: 260px;
+  width: 220px;
 
   height: 100vh;
 
@@ -10,13 +10,32 @@
 
   top: 0;
 
-  background: #eef2f7;
+  background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
 
-  border-right: 1px solid #e2e8f0;
+  border-right: 1px solid rgba(148, 163, 184, 0.15);
 
-  padding: 30px 20px;
+  padding: 28px 18px;
 
   overflow-y: auto;
+}
+
+.sidebar nav a {
+  color: #d1d5db;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.logo h2 {
+  color: #ffffff;
+}
+
+.logo span {
+  color: #9ca3af;
 }
 
 .logo {

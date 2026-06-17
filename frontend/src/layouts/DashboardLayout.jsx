@@ -13,7 +13,7 @@ const DashboardLayout = ({
 
       <main
         style={{
-          marginLeft: "260px",
+          marginLeft: "220px",
           minHeight: "100vh",
           padding: "30px",
           background: "#f5f7fb"

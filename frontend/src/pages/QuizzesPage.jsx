@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { getQuizzes } from "../services/quizService";
 import "../styles/quizzes.css";
 
 const QuizzesPage = () => {
+  const navigate = useNavigate();
   const [quizzes, setQuizzes] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -63,6 +65,9 @@ const QuizzesPage = () => {
         <span className="quizzes-count">{quizzes.length} quizzes</span>
       </div>
 
+      <div className="page-toolbar">
+        <button className="back-home-btn" onClick={() => navigate("/")}>Back to home</button>
+      </div>
       {quizzes.length === 0 ? (
         <div className="empty-state">
           <strong>No quizzes found</strong>
