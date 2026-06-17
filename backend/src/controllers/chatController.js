@@ -4,6 +4,18 @@ const {
   "../services/chatService"
 );
 
+const {
+  extractText
+} = require(
+  "../services/textExtractionService"
+);
+
+const {
+  getFileById
+} = require(
+  "../services/summaryDataService"
+);
+
 const chatWithNotes =
   async (
     req,
@@ -14,15 +26,37 @@ const chatWithNotes =
     try {
 
       const {
-        notes,
+        fileId,
         question
       } = req.body;
 
-      const answer =
-        answerQuestion(
-          notes,
-          question
-        );
+      if (!fileId || !question) {
+        return res.status(400).json({
+          success: false,
+          message: "fileId and question are required"
+        });
+      }
+
+      const file = await getFileById(
+        req.user.id,
+        fileId
+      );
+
+      if (!file) {
+        return res.status(404).json({
+          success: false,
+          message: "File not found"
+        });
+      }
+
+      const notes = await extractText(
+        file.file_path
+      );
+
+      const answer = answerQuestion(
+        notes,
+        question
+      );
 
       res.json({
         success: true,
