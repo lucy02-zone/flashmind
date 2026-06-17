@@ -10,12 +10,9 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
-  const [fileContent, setFileContent] = useState("");
   const [messages, setMessages] = useState([]);
   const [loadingFiles, setLoadingFiles] = useState(true);
-  const [loadingContent, setLoadingContent] = useState(false);
   const [loadingMessage, setLoadingMessage] = useState(false);
-  const [message, setMessage] = useState("");
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState("");
 
@@ -25,48 +22,31 @@ const ChatPage = () => {
 
   const loadFiles = async () => {
     setLoadingFiles(true);
-    setMessage("");
+    setError("");
 
     try {
       const data = await getUserFiles();
       setFiles(data.files || []);
       if (data.files?.length) {
         setSelectedFile(data.files[0]);
-        await loadFileContent(data.files[0]);
       }
     } catch (err) {
       console.error(err);
-      setMessage("Unable to load uploaded files.");
+      setError("Unable to load uploaded files.");
     } finally {
       setLoadingFiles(false);
     }
   };
 
-  const loadFileContent = async (file) => {
-    setLoadingContent(true);
-    setFileContent("");
-    setMessages([]);
-    setError("");
-
-    try {
-      // Just set the file, content will be extracted on backend
-      setFileContent(file.id);
-    } catch (err) {
-      console.error(err);
-      setError("Failed to load file. Try another file.");
-    } finally {
-      setLoadingContent(false);
-    }
-  };
-
   const handleFileSelect = (file) => {
     setSelectedFile(file);
-    loadFileContent(file);
+    setMessages([]);
+    setError("");
   };
 
   const handleSendMessage = async () => {
     if (!inputValue.trim()) return;
-    if (!selectedFile || !fileContent) {
+    if (!selectedFile) {
       setError("Please select a file first.");
       return;
     }
@@ -89,9 +69,7 @@ const ChatPage = () => {
     } catch (err) {
       console.error(err);
       setError("Failed to get response. Please try again.");
-      setMessages((prev) =>
-        prev.slice(0, -1)
-      );
+      setMessages((prev) => prev.slice(0, -1));
     } finally {
       setLoadingMessage(false);
     }
@@ -155,12 +133,7 @@ const ChatPage = () => {
           <div className="chat-main">
             {error && <div className="error-banner">{error}</div>}
 
-            {loadingContent ? (
-              <div className="chat-loading">
-                <div className="spinner"></div>
-                <p>Loading document...</p>
-              </div>
-            ) : !selectedFile ? (
+            {!selectedFile ? (
               <div className="chat-empty">
                 <div className="empty-icon">📄</div>
                 <h2>Select a Document</h2>
@@ -240,13 +213,13 @@ const ChatPage = () => {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyPress={handleKeyPress}
-                    disabled={loadingMessage || loadingContent}
+                    disabled={loadingMessage}
                     rows={3}
                   />
                   <button
                     className="send-btn"
                     onClick={handleSendMessage}
-                    disabled={loadingMessage || loadingContent || !inputValue.trim()}
+                    disabled={loadingMessage || !inputValue.trim()}
                   >
                     {loadingMessage ? "Sending..." : "Send"}
                   </button>
