@@ -70,34 +70,6 @@ const DashboardPage = () => {
 
         </section>
 
-        <div className="quick-actions">
-
-          <button
-            onClick={() =>
-              navigate("/uploads")
-            }
-          >
-            Upload Notes
-          </button>
-
-          <button
-            onClick={() =>
-              navigate("/quizzes")
-            }
-          >
-            Generate Quiz
-          </button>
-
-          <button
-            onClick={() =>
-              navigate("/flashcards")
-            }
-          >
-            Flashcards
-          </button>
-
-        </div>
-
         <section className="feature-grid">
 
           {
@@ -107,6 +79,14 @@ const DashboardPage = () => {
                 <div
                   key={index}
                   className="feature-card"
+                  onClick={() => {
+                    const target = card.title.toLowerCase();
+                    if (target === "files") {
+                      navigate("/uploads");
+                    } else {
+                      navigate(`/${target}`);
+                    }
+                  }}
                 >
 
                   <div className="feature-icon">
